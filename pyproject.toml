@@ -1,0 +1,11 @@
+[build-system]
+requires = ["flit_core >=2,<3"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "spatial_image"
+author = "Matt McCormick"
+author-email = "matt.mccormick@kitware.com"
+home-page = "https://github.com/spatial-image/spatial-image"
+classifiers = ["License :: OSI Approved :: MIT License"]
+
