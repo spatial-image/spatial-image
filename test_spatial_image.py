@@ -9,4 +9,4 @@ def test_is_spatial_image():
 def test_to_spatial_image():
     array = np.random.random((3,4))
     image = si.to_spatial_image(array)
-    # assert(si.is_spatial_image(image))
+    assert(si.is_spatial_image(image))

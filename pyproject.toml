@@ -11,6 +11,7 @@ classifiers = ["License :: OSI Approved :: MIT License"]
 
 requires = [
     "numpy",
+    "xarray",
 ]
 
 [tool.flit.metadata.requires-extra]

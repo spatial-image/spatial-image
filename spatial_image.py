@@ -4,6 +4,8 @@ A multi-dimensional spatial image data structure for Python."""
 
 __version__ = '0.0.1'
 
+import xarray as xr
+
 def is_spatial_image(image):
     """Verify that the image 'quacks like a spatial-image'.
 
@@ -19,7 +21,10 @@ def is_spatial_image(image):
     bool
         Verification tests result.
     """
-    return False
+    if not isinstance(image, xr.DataArray):
+        return False
+
+    return True
 
 def to_spatial_image(array_like):
     """Convert the array-like to a spatial-image.
@@ -36,4 +41,7 @@ def to_spatial_image(array_like):
     spatial_image
         Spatial image corresponding to the array and provided metadata.
     """
-    pass
+
+    image = xr.DataArray(array_like)
+
+    return image
