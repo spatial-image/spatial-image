@@ -17,3 +17,22 @@ the expected behavior of a spatial image instance, and a reference function,
 ndarray](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)
 or a [Dask array](https://docs.dask.org/en/latest/array.html), to a spatial
 image.
+
+## Installation
+
+```
+pip install spatial-image
+```
+
+## Development
+
+Contributions are welcome and appreciated.
+
+To run the test suite:
+
+```
+git clone https://github.com/spatial-image/spatial-image
+cd spatial-image
+pip install -r requirements.txt -r requirements-dev.txt
+pytest
+```
