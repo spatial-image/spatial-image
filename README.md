@@ -23,11 +23,10 @@ ndarray](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html
 or a [Dask array](https://docs.dask.org/en/latest/array.html), to a spatial
 image.
 
-The spatial-image data structure is implemented with
-[xarray](https://xarray.pydata.org/en/stable/), a library for N-D labeled
-arrays and datasets in Python. The xarray library is well-tested, relatively
-mature, and integrates well with scientific Python ecosystem tooling. The
-xarray library leverages [NumPy](https://numpy.org/) and
+The spatial-image data structure is implemented with [xarray], a library for
+N-D labeled arrays and datasets in Python. The xarray library is well-tested,
+relatively mature, and integrates well with scientific Python ecosystem
+tooling. The xarray library leverages [NumPy](https://numpy.org/) and
 [pandas](https://pandas.pydata.org/) for labeled array indexing, integrates
 well with machine-learning libraries utilizing the
 [scikit-learn](https://scikit-learn.org/) interface, integrates with
@@ -35,19 +34,35 @@ well with machine-learning libraries utilizing the
 [zarr](https://zarr.readthedocs.io/) for serialization.
 
 In essence, a spatial image is an
-[`xarray.DataArray`](https://xarray.pydata.org/en/stable/data-structures.html#dataarray) with a defined set of
-[`dims`](https://xarray.pydata.org/en/stable/terminology.html) labels,
-`('c', 'x', 'y', 'z', 't')`,
-constraints on the
-[`coords`](https://xarray.pydata.org/en/stable/terminology.html), to
-enforce uniform spacing in a given direction, and defined set of
-additional metadata [`attrs`](https://xarray.pydata.org/en/stable/data-structures.html).
+[`xarray.DataArray`](https://xarray.pydata.org/en/stable/data-structures.html#dataarray)
+with a defined set of [`dims`] labels, `{'c', 'x', 'y', 'z', 't'}`,
+constraints on the [`coords`], to enforce uniform spacing in a given
+direction, and defined set of additional metadata [`attrs`].
 
 ## Installation
 
 ```
 pip install spatial-image
 ```
+
+## Definitions
+
+### Data Dimensions
+
+A spatial image's xarray [`dims`] belong to the set: `{'c', 'x', 'y', 'z', 't'}`. These dimensions are:
+
+<dl>
+  <dt>c</dt>
+  <dd>Component / channel dimension.</dd>
+  <dt>x</dt>
+  <dd>First spatial dimension.</dd>
+  <dt>y</dt>
+  <dd>Second spatial dimension.</dd>
+  <dt>z</dt>
+  <dd>Third spatial dimension.</dd>
+  <dt>t</dt>
+  <dd>Time dimension.</dd>
+</dl>
 
 ## Development
 
@@ -61,3 +76,8 @@ cd spatial-image
 pip install -r requirements.txt -r requirements-dev.txt
 pytest
 ```
+
+[xarray]: https://xarray.pydata.org/en/stable/
+[`dims`]: https://xarray.pydata.org/en/stable/terminology.html
+[`coords`]: https://xarray.pydata.org/en/stable/terminology.html
+[`attrs`]: https://xarray.pydata.org/en/stable/data-structures.html
