@@ -9,3 +9,12 @@ author-email = "matt.mccormick@kitware.com"
 home-page = "https://github.com/spatial-image/spatial-image"
 classifiers = ["License :: OSI Approved :: MIT License"]
 
+requires = [
+    "numpy",
+    "xarray",
+]
+
+[tool.flit.metadata.requires-extra]
+test = [
+    "pytest",
+]
