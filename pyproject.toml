@@ -8,6 +8,7 @@ author = "Matt McCormick"
 author-email = "matt.mccormick@kitware.com"
 home-page = "https://github.com/spatial-image/spatial-image"
 classifiers = ["License :: OSI Approved :: MIT License"]
+description-file = "README.md"
 
 requires = [
     "numpy",
