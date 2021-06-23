@@ -2,7 +2,7 @@
 
 A multi-dimensional spatial image data structure for Python."""
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 import xarray as xr
 import numpy as np
