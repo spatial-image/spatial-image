@@ -18,4 +18,5 @@ requires = [
 [tool.flit.metadata.requires-extra]
 test = [
     "pytest",
+    "pytest-mypy",
 ]
