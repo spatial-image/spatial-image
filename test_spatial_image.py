@@ -3,6 +3,7 @@ import pytest
 import spatial_image as si
 
 import numpy as np
+import xarray as xr
 
 
 def test_is_spatial_image():
@@ -144,3 +145,6 @@ def test_uniform_coord_check():
     image = si.to_spatial_image(array, coords=coords)
 
     assert not si.is_spatial_image(image)
+
+def test_SpatialImage_type():
+    si.SpatialImage is xr.DataArray

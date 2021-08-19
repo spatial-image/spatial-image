@@ -4,14 +4,19 @@ A multi-dimensional spatial image data structure for Python."""
 
 __version__ = "0.0.2"
 
+from typing import Union, Sequence, Hashable, Tuple, Mapping, Any
+
 import xarray as xr
 import numpy as np
 
 _supported_dims = {"c", "x", "y", "z", "t"}
 _spatial_dims = {"x", "y", "z"}
 
+# Type alias
+SpatialImage = xr.DataArray
 
-def is_spatial_image(image):
+
+def is_spatial_image(image: SpatialImage) -> bool:
     """Verify that the image 'quacks like a spatial-image'.
 
     Parameters
@@ -52,7 +57,10 @@ def is_spatial_image(image):
     return True
 
 
-def to_spatial_image(array_like, dims=None, coords=None):
+def to_spatial_image(
+        array_like: Any,
+        dims: Union[Sequence[Hashable], None] = None,
+        coords: Union[Sequence[Tuple], Mapping[Hashable, Any], None] = None) -> SpatialImage:
     """Convert the array-like to a spatial-image.
 
     Parameters
