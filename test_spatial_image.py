@@ -110,7 +110,7 @@ def test_time_coord_type_check():
     coords = {
         "x": np.arange(4, dtype=np.float64),
         "y": np.arange(3, dtype=np.float64),
-        "t": np.arange(2, dtype=np.int),
+        "t": np.arange(2, dtype=np.int32),
     }
     dims = ("t", "y", "x")
     image = si.to_spatial_image(array, dims=dims, coords=coords)
