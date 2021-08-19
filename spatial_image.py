@@ -2,7 +2,7 @@
 
 A multi-dimensional spatial image data structure for Python."""
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 from typing import Union, Sequence, Hashable, Tuple, Mapping, Any
 
