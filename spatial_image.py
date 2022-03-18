@@ -2,18 +2,37 @@
 
 A multi-dimensional spatial image data structure for Python."""
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 
-from typing import Union, Sequence, Hashable, Tuple, Mapping, Any
+from typing import Union, Sequence, Hashable, Tuple, Mapping, Any, Literal
+from dataclasses import dataclass
 
 import xarray as xr
 import numpy as np
 
+from xarray_dataclasses import AsDataArray, AsDataset
+from xarray_dataclasses import Attr, Coord, Data, Name
+
 _supported_dims = {"c", "x", "y", "z", "t"}
 _spatial_dims = {"x", "y", "z"}
 
-# Type alias
-SpatialImage = xr.DataArray
+SupportedDims = Union[Literal["c"], Literal["x"], Literal["y"], Literal["z"], Literal["t"]]
+SpatialDims = Union[Literal["x"], Literal["y"], Literal["z"]]
+AllInteger = Union[np.uint8, np.int8, np.uint16, np.int16, np.uint32, np.int32, np.uint64, np.int64]
+AllFloat = Union[np.float32, np.float64]
+
+@dataclass
+class SpatialImage(AsDataArray):
+    """An xarray.DataArray dataclass for a spatial image."""
+
+    data: Data[Sequence[SupportedDims], Union[AllInteger, AllFloat]]
+    t: Coord[Literal["t"], Union[AllInteger, AllFloat, np.datetime64]]
+    x: Coord[Literal["x"], np.float64]
+    y: Coord[Literal["y"], np.float64]
+    z: Coord[Literal["z"], np.float64]
+    c: Coord[Literal["c"], Union[AllInteger, str]]
+    name: Name[str] = "Image"
+    units: Attr[str] = "mm"
 
 
 def is_spatial_image(image: SpatialImage) -> bool:
