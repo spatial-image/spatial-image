@@ -13,6 +13,7 @@ description-file = "README.md"
 requires = [
     "numpy",
     "xarray",
+    "xarray-dataclasses",
 ]
 
 [tool.flit.metadata.requires-extra]
