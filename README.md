@@ -1,5 +1,7 @@
 # spatial-image
 
+[![Test](https://github.com/spatial-image/spatial-image/actions/workflows/test.yml/badge.svg)](https://github.com/spatial-image/spatial-image/actions/workflows/test.yml)
+
 A multi-dimensional spatial image data structure for scientific Python.
 
 To facilitate:
