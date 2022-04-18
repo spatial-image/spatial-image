@@ -116,7 +116,7 @@ class SpatialImageDataClass(AsDataArray):
 class SpatialImageXDataClass(SpatialImageDataClass):
     """A 1D spatial image."""
 
-    data: Data[tuple[X], Any]
+    data: Data[Tuple[X], Any]
     x: Coordof[XAxis]
 
     def __init__(
@@ -154,7 +154,7 @@ class SpatialImageXDataClass(SpatialImageDataClass):
 class SpatialImageXCDataClass(SpatialImageXDataClass):
     """A 1D spatial image with channels."""
 
-    data: Data[tuple[X, C], Any]
+    data: Data[Tuple[X, C], Any]
     c: Coordof[CAxis]
 
     def __init__(
@@ -185,7 +185,7 @@ class SpatialImageXCDataClass(SpatialImageXDataClass):
 class SpatialImageTXDataClass(SpatialImageDataClass):
     """A 1D spatial image with a time dimension."""
 
-    data: Data[tuple[T, X], Any]
+    data: Data[Tuple[T, X], Any]
     t: Coordof[TAxis]
     x: Coordof[XAxis]
 
@@ -235,7 +235,7 @@ class SpatialImageTXDataClass(SpatialImageDataClass):
 class SpatialImageTXCDataClass(SpatialImageTXDataClass):
     """A 1D spatial image with a time dimension and channels."""
 
-    data: Data[tuple[T, X, C], Any]
+    data: Data[Tuple[T, X, C], Any]
     c: Coordof[CAxis]
 
     def __init__(
@@ -268,7 +268,7 @@ class SpatialImageTXCDataClass(SpatialImageTXDataClass):
 class SpatialImageYXDataClass(SpatialImageDataClass):
     """A 2D spatial image."""
 
-    data: Data[tuple[Y,X], Any]
+    data: Data[Tuple[Y,X], Any]
     y: Coordof[YAxis]
     x: Coordof[XAxis]
 
@@ -319,7 +319,7 @@ class SpatialImageYXDataClass(SpatialImageDataClass):
 class SpatialImageYXCDataClass(SpatialImageYXDataClass):
     """A 2D spatial image with channels."""
 
-    data: Data[tuple[Y, X, C], Any]
+    data: Data[Tuple[Y, X, C], Any]
     c: Coordof[CAxis]
 
     def __init__(
@@ -349,7 +349,7 @@ class SpatialImageYXCDataClass(SpatialImageYXDataClass):
 class SpatialImageTYXDataClass(SpatialImageDataClass):
     """A 2D spatial image with a time dimension."""
 
-    data: Data[tuple[T, Y, X], Any]
+    data: Data[Tuple[T, Y, X], Any]
     t: Coordof[TAxis]
     y: Coordof[YAxis]
     x: Coordof[XAxis]
@@ -411,7 +411,7 @@ class SpatialImageTYXDataClass(SpatialImageDataClass):
 class SpatialImageTYXCDataClass(SpatialImageTYXDataClass):
     """A 2D spatial image with a time dimension and channels."""
 
-    data: Data[tuple[T, Y, X, C], Any]
+    data: Data[Tuple[T, Y, X, C], Any]
     c: Coordof[CAxis]
 
     def __init__(
@@ -444,7 +444,7 @@ class SpatialImageTYXCDataClass(SpatialImageTYXDataClass):
 class SpatialImageZYXDataClass(SpatialImageDataClass):
     """A 3D spatial image."""
 
-    data: Data[tuple[Z,Y,X], Any]
+    data: Data[Tuple[Z,Y,X], Any]
     z: Coordof[ZAxis]
     y: Coordof[YAxis]
     x: Coordof[XAxis]
@@ -509,7 +509,7 @@ class SpatialImageZYXDataClass(SpatialImageDataClass):
 class SpatialImageZYXCDataClass(SpatialImageZYXDataClass):
     """A 3D spatial image with channels."""
 
-    data: Data[tuple[Z, Y, X, C], Any]
+    data: Data[Tuple[Z, Y, X, C], Any]
     c: Coordof[CAxis]
 
     def __init__(
@@ -538,7 +538,7 @@ class SpatialImageZYXCDataClass(SpatialImageZYXDataClass):
 class SpatialImageTZYXDataClass(SpatialImageDataClass):
     """A 3D spatial image with a time dimension."""
 
-    data: Data[tuple[T, Z, Y, X], Any]
+    data: Data[Tuple[T, Z, Y, X], Any]
     t: Coordof[TAxis]
     z: Coordof[ZAxis]
     y: Coordof[YAxis]
@@ -613,7 +613,7 @@ class SpatialImageTZYXDataClass(SpatialImageDataClass):
 class SpatialImageTZYXCDataClass(SpatialImageTZYXDataClass):
     """A 3D spatial image with a time dimension and channels."""
 
-    data: Data[tuple[T, Z, Y, X, C], Any]
+    data: Data[Tuple[T, Z, Y, X, C], Any]
     c: Coordof[CAxis]
 
     def __init__(
