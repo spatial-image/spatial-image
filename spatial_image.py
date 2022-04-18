@@ -10,8 +10,8 @@ from dataclasses import dataclass
 import xarray as xr
 import numpy as np
 
-from xarray_dataclasses import AsDataArray, AsDataset
-from xarray_dataclasses import Attr, Coordof, Data, Name
+from xarray_dataclasses.dataarray import AsDataArray 
+from xarray_dataclasses.typing import Attr, Coordof, Data, Name
 from xarray_dataclasses.dataoptions import DataOptions
 
 
