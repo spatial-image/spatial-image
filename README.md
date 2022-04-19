@@ -68,6 +68,17 @@ A spatial image's xarray [`dims`] belong to the set: `{'c', 'x', 'y', 'z', 't'}`
   <dd>Time dimension.</dd>
 </dl>
 
+### Axis attributes
+
+Each `dim` has an axis with additional attributes to describe the dimension.
+
+<dl>
+  <dt>long_name</dt>
+  <dd>A descriptive name for the axis, e.g. <i>anterior-posterior</i> or <i>x-axis</i>. Defaults to the dim name.</dd>
+  <dt>units</dt>
+  <dd>Units for the axis, e.g. <i>millimeters</i>. Defaults to the empty string.</dd>
+</dl>
+
 ### Coordinates
 
 A spatial image's Xarray [`coords`] specify the spatial location of pixels in
