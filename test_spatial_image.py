@@ -134,7 +134,7 @@ def test_SpatialImageXDataClass():
     image = si.SpatialImageXDataClass.new(
         array,
         scale={"x": 2.0},
-        translate={"x": 3.5},
+        translation={"x": 3.5},
         name="img",
         axis_names={"x": "left-right"},
     )
@@ -166,7 +166,7 @@ def test_SpatialImageXCDataClass():
     image = si.SpatialImageXCDataClass.new(
         array,
         scale={"x": 2.0},
-        translate={"x": 3.5},
+        translation={"x": 3.5},
         name="img",
         axis_names={"x": "left-right", "c": "features"},
         c_coords=["fa", "fb"],
@@ -196,7 +196,7 @@ def test_SpatialImageTXDataClass():
     image = si.SpatialImageTXDataClass.new(
         array,
         scale={"x": 2.0},
-        translate={"x": 3.5},
+        translation={"x": 3.5},
         name="img",
         axis_names={"x": "left-right", "t": "time"},
         t_coords=["ta", "tb", "tc"],
@@ -231,7 +231,7 @@ def test_SpatialImageTXCDataClass():
     image = si.SpatialImageTXCDataClass.new(
         array,
         scale={"x": 2.0},
-        translate={"x": 3.5},
+        translation={"x": 3.5},
         name="img",
         axis_names={"x": "left-right", "t": "time"},
         axis_units={"x": "millimeters", "t": "seconds"},
@@ -268,7 +268,7 @@ def test_SpatialImageYXDataClass():
     image = si.SpatialImageYXDataClass.new(
         array,
         scale={"y": 3.4, "x": 2.0},
-        translate={"y": 1.2, "x": 3.5},
+        translation={"y": 1.2, "x": 3.5},
         name="img",
         axis_names={"x": "left-right", "y": "anterior-posterior"},
         axis_units={"x": "millimeters", "y": "micrometers"},
@@ -307,7 +307,7 @@ def test_SpatialImageYXCDataClass():
     image = si.SpatialImageYXCDataClass.new(
         array,
         scale={"y": 3.4, "x": 2.0},
-        translate={"y": 1.2, "x": 3.5},
+        translation={"y": 1.2, "x": 3.5},
         name="img",
         axis_names={"x": "left-right", "y": "anterior-posterior"},
         axis_units={"x": "millimeters", "y": "micrometers"},
@@ -350,7 +350,7 @@ def test_SpatialImageTYXDataClass():
     image = si.SpatialImageTYXDataClass.new(
         array,
         scale={"y": 3.4, "x": 2.0},
-        translate={"y": 1.2, "x": 3.5},
+        translation={"y": 1.2, "x": 3.5},
         name="img",
         axis_names={"x": "left-right", "y": "anterior-posterior"},
         axis_units={"x": "millimeters", "y": "micrometers"},
@@ -396,7 +396,7 @@ def test_SpatialImageTYXCDataClass():
     image = si.SpatialImageTYXCDataClass.new(
         array,
         scale={"y": 3.4, "x": 2.0},
-        translate={"y": 1.2, "x": 3.5},
+        translation={"y": 1.2, "x": 3.5},
         name="img",
         axis_names={"x": "left-right", "y": "anterior-posterior"},
         axis_units={"x": "millimeters", "y": "micrometers"},
@@ -443,7 +443,7 @@ def test_SpatialImageZYXDataClass():
     image = si.SpatialImageZYXDataClass.new(
         array,
         scale={"z": 1.8, "y": 3.4, "x": 2.0},
-        translate={"z": 0.9, "y": 1.2, "x": 3.5},
+        translation={"z": 0.9, "y": 1.2, "x": 3.5},
         name="img",
         axis_names={"z": "inferior-superior", "x": "left-right", "y": "anterior-posterior"},
         axis_units={"z": "millimeters", "x": "millimeters", "y": "micrometers"},
@@ -490,7 +490,7 @@ def test_SpatialImageZYXCDataClass():
     image = si.SpatialImageZYXCDataClass.new(
         array,
         scale={"z": 1.8, "y": 3.4, "x": 2.0},
-        translate={"z": 0.9, "y": 1.2, "x": 3.5},
+        translation={"z": 0.9, "y": 1.2, "x": 3.5},
         name="img",
         axis_names={"z": "inferior-superior", "x": "left-right", "y": "anterior-posterior"},
         axis_units={"z": "millimeters", "x": "millimeters", "y": "micrometers"},
@@ -541,7 +541,7 @@ def test_SpatialImageTZYXDataClass():
     image = si.SpatialImageTZYXDataClass.new(
         array,
         scale={"z": 1.8, "y": 3.4, "x": 2.0},
-        translate={"z": 0.9, "y": 1.2, "x": 3.5},
+        translation={"z": 0.9, "y": 1.2, "x": 3.5},
         name="img",
         axis_names={"z": "inferior-superior", "x": "left-right", "y": "anterior-posterior"},
         axis_units={"z": "millimeters", "x": "millimeters", "y": "micrometers"},
@@ -595,7 +595,7 @@ def test_SpatialImageTZYXCDataClass():
     image = si.SpatialImageTZYXCDataClass.new(
         array,
         scale={"z": 1.8, "y": 3.4, "x": 2.0},
-        translate={"z": 0.9, "y": 1.2, "x": 3.5},
+        translation={"z": 0.9, "y": 1.2, "x": 3.5},
         name="img",
         axis_names={"z": "inferior-superior", "x": "left-right", "y": "anterior-posterior"},
         axis_units={"z": "millimeters", "x": "millimeters", "y": "micrometers"},
@@ -642,7 +642,7 @@ def test_SpatialImageCXDataClass():
     image = si.SpatialImageCXDataClass.new(
         array,
         scale={"x": 2.0},
-        translate={"x": 3.5},
+        translation={"x": 3.5},
         name="img",
         axis_names={"x": "left-right", "c": "features"},
         c_coords=["fa", "fb"],
@@ -677,7 +677,7 @@ def test_SpatialImageTCXDataClass():
     image = si.SpatialImageTCXDataClass.new(
         array,
         scale={"x": 2.0},
-        translate={"x": 3.5},
+        translation={"x": 3.5},
         name="img",
         axis_names={"x": "left-right", "t": "time"},
         axis_units={"x": "millimeters", "t": "seconds"},
@@ -717,7 +717,7 @@ def test_SpatialImageCYXDataClass():
     image = si.SpatialImageCYXDataClass.new(
         array,
         scale={"y": 3.4, "x": 2.0},
-        translate={"y": 1.2, "x": 3.5},
+        translation={"y": 1.2, "x": 3.5},
         name="img",
         axis_names={"x": "left-right", "y": "anterior-posterior"},
         axis_units={"x": "millimeters", "y": "micrometers"},
@@ -763,7 +763,7 @@ def test_SpatialImageTCYXDataClass():
     image = si.SpatialImageTCYXDataClass.new(
         array,
         scale={"y": 3.4, "x": 2.0},
-        translate={"y": 1.2, "x": 3.5},
+        translation={"y": 1.2, "x": 3.5},
         name="img",
         axis_names={"x": "left-right", "y": "anterior-posterior"},
         axis_units={"x": "millimeters", "y": "micrometers"},
@@ -816,7 +816,7 @@ def test_SpatialImageTCZYXDataClass():
     image = si.SpatialImageTCZYXDataClass.new(
         array,
         scale={"z": 1.8, "y": 3.4, "x": 2.0},
-        translate={"z": 0.9, "y": 1.2, "x": 3.5},
+        translation={"z": 0.9, "y": 1.2, "x": 3.5},
         name="img",
         axis_names={"z": "inferior-superior", "x": "left-right", "y": "anterior-posterior"},
         axis_units={"z": "millimeters", "x": "millimeters", "y": "micrometers"},
