@@ -4,6 +4,7 @@ A multi-dimensional spatial image data structure for Python."""
 
 __version__ = "0.1.0"
 
+from tkinter import W
 from typing import Union, Optional, Sequence, Hashable, Tuple, Mapping, Any, Literal
 from dataclasses import dataclass
 
@@ -123,7 +124,7 @@ class SpatialImageXDataClass(SpatialImageDataClass):
         self,
         data,
         scale: Optional[Union[Mapping[Hashable, float]]] = None,
-        translate: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
         name: str = default_name,
         axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
         axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
@@ -134,8 +135,8 @@ class SpatialImageXDataClass(SpatialImageDataClass):
         if scale is None:
             scale = {"x": 1.0}
 
-        if translate is None:
-            translate = {"x": 0.0}
+        if translation is None:
+            translation = {"x": 0.0}
 
         x_axis_name = "x"
         if axis_names and "x" in axis_names:
@@ -144,7 +145,7 @@ class SpatialImageXDataClass(SpatialImageDataClass):
         if axis_units and "x" in axis_units:
             x_axis_units = axis_units["x"]
         self.x = XAxis(
-            np.arange(data.shape[0], dtype=np.float64) * scale["x"] + translate["x"],
+            np.arange(data.shape[0], dtype=np.float64) * scale["x"] + translation["x"],
             long_name=x_axis_name,
             units=x_axis_units,
         )
@@ -161,13 +162,13 @@ class SpatialImageXCDataClass(SpatialImageXDataClass):
         self,
         data,
         scale: Optional[Union[Mapping[Hashable, float]]] = None,
-        translate: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
         name: str = default_name,
         axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
         axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
         c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
     ):
-        super().__init__(data, scale, translate, name, axis_names, axis_units)
+        super().__init__(data, scale, translation, name, axis_names, axis_units)
         if c_coords is None:
             c_coords = np.arange(data.shape[1])
 
@@ -193,7 +194,7 @@ class SpatialImageTXDataClass(SpatialImageDataClass):
         self,
         data,
         scale: Optional[Union[Mapping[Hashable, float]]] = None,
-        translate: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
         name: str = default_name,
         axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
         axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
@@ -205,8 +206,8 @@ class SpatialImageTXDataClass(SpatialImageDataClass):
         if scale is None:
             scale = {"x": 1.0}
 
-        if translate is None:
-            translate = {"x": 0.0}
+        if translation is None:
+            translation = {"x": 0.0}
 
         x_axis_name = "x"
         if axis_names and "x" in axis_names:
@@ -215,7 +216,7 @@ class SpatialImageTXDataClass(SpatialImageDataClass):
         if axis_units and "x" in axis_units:
             x_axis_units = axis_units["x"]
         self.x = XAxis(
-            np.arange(data.shape[1], dtype=np.float64) * scale["x"] + translate["x"],
+            np.arange(data.shape[1], dtype=np.float64) * scale["x"] + translation["x"],
             long_name=x_axis_name,
             units=x_axis_units,
         )
@@ -242,14 +243,14 @@ class SpatialImageTXCDataClass(SpatialImageTXDataClass):
         self,
         data,
         scale: Optional[Union[Mapping[Hashable, float]]] = None,
-        translate: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
         name: str = default_name,
         axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
         axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
         t_coords: Optional[Sequence[Union[AllInteger, AllFloat, np.datetime64]]] = None,
         c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
     ):
-        super().__init__(data, scale, translate, name, axis_names, axis_units, t_coords)
+        super().__init__(data, scale, translation, name, axis_names, axis_units, t_coords)
         if c_coords is None:
             c_coords = np.arange(data.shape[2])
 
@@ -276,7 +277,7 @@ class SpatialImageYXDataClass(SpatialImageDataClass):
         self,
         data,
         scale: Optional[Union[Mapping[Hashable, float]]] = None,
-        translate: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
         name: str = default_name,
         axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
         axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
@@ -287,8 +288,8 @@ class SpatialImageYXDataClass(SpatialImageDataClass):
         if scale is None:
             scale = {"y": 1.0, "x": 1.0}
 
-        if translate is None:
-            translate = {"y": 0.0, "x": 0.0}
+        if translation is None:
+            translation = {"y": 0.0, "x": 0.0}
 
         y_axis_name = "y"
         if axis_names and "y" in axis_names:
@@ -297,7 +298,7 @@ class SpatialImageYXDataClass(SpatialImageDataClass):
         if axis_units and "y" in axis_units:
             y_axis_units = axis_units["y"]
         self.y = YAxis(
-            np.arange(data.shape[0], dtype=np.float64) * scale["y"] + translate["y"],
+            np.arange(data.shape[0], dtype=np.float64) * scale["y"] + translation["y"],
             long_name=y_axis_name,
             units=y_axis_units,
         )
@@ -309,7 +310,7 @@ class SpatialImageYXDataClass(SpatialImageDataClass):
         if axis_units and "x" in axis_units:
             x_axis_units = axis_units["x"]
         self.x = XAxis(
-            np.arange(data.shape[1], dtype=np.float64) * scale["x"] + translate["x"],
+            np.arange(data.shape[1], dtype=np.float64) * scale["x"] + translation["x"],
             long_name=x_axis_name,
             units=x_axis_units,
         )
@@ -326,13 +327,13 @@ class SpatialImageYXCDataClass(SpatialImageYXDataClass):
         self,
         data,
         scale: Optional[Union[Mapping[Hashable, float]]] = None,
-        translate: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
         name: str = default_name,
         axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
         axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
         c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
     ):
-        super().__init__(data, scale, translate, name, axis_names, axis_units)
+        super().__init__(data, scale, translation, name, axis_names, axis_units)
         if c_coords is None:
             c_coords = np.arange(data.shape[2])
 
@@ -358,7 +359,7 @@ class SpatialImageTYXDataClass(SpatialImageDataClass):
         self,
         data,
         scale: Optional[Union[Mapping[Hashable, float]]] = None,
-        translate: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
         name: str = default_name,
         axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
         axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
@@ -370,8 +371,8 @@ class SpatialImageTYXDataClass(SpatialImageDataClass):
         if scale is None:
             scale = {"y": 1.0, "x": 1.0}
 
-        if translate is None:
-            translate = {"y": 0.0, "x": 0.0}
+        if translation is None:
+            translation = {"y": 0.0, "x": 0.0}
 
         y_axis_name = "y"
         if axis_names and "y" in axis_names:
@@ -380,7 +381,7 @@ class SpatialImageTYXDataClass(SpatialImageDataClass):
         if axis_units and "y" in axis_units:
             y_axis_units = axis_units["y"]
         self.y = YAxis(
-            np.arange(data.shape[1], dtype=np.float64) * scale["y"] + translate["y"],
+            np.arange(data.shape[1], dtype=np.float64) * scale["y"] + translation["y"],
             long_name=y_axis_name,
             units=y_axis_units,
         )
@@ -392,7 +393,7 @@ class SpatialImageTYXDataClass(SpatialImageDataClass):
         if axis_units and "x" in axis_units:
             x_axis_units = axis_units["x"]
         self.x = XAxis(
-            np.arange(data.shape[2], dtype=np.float64) * scale["x"] + translate["x"],
+            np.arange(data.shape[2], dtype=np.float64) * scale["x"] + translation["x"],
             long_name=x_axis_name,
             units=x_axis_units,
         )
@@ -418,14 +419,14 @@ class SpatialImageTYXCDataClass(SpatialImageTYXDataClass):
         self,
         data,
         scale: Optional[Union[Mapping[Hashable, float]]] = None,
-        translate: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
         name: str = default_name,
         axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
         axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
         t_coords: Optional[Sequence[Union[AllInteger, AllFloat, np.datetime64]]] = None,
         c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
     ):
-        super().__init__(data, scale, translate, name, axis_names, axis_units, t_coords)
+        super().__init__(data, scale, translation, name, axis_names, axis_units, t_coords)
         if c_coords is None:
             c_coords = np.arange(data.shape[3])
 
@@ -453,7 +454,7 @@ class SpatialImageZYXDataClass(SpatialImageDataClass):
         self,
         data,
         scale: Optional[Union[Mapping[Hashable, float]]] = None,
-        translate: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
         name: str = default_name,
         axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
         axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
@@ -464,8 +465,8 @@ class SpatialImageZYXDataClass(SpatialImageDataClass):
         if scale is None:
             scale = {"z": 1.0, "y": 1.0, "x": 1.0}
 
-        if translate is None:
-            translate = {"z": 0.0, "y": 0.0, "x": 0.0}
+        if translation is None:
+            translation = {"z": 0.0, "y": 0.0, "x": 0.0}
 
         z_axis_name = "z"
         if axis_names and "z" in axis_names:
@@ -474,11 +475,10 @@ class SpatialImageZYXDataClass(SpatialImageDataClass):
         if axis_units and "z" in axis_units:
             z_axis_units = axis_units["z"]
         self.z = ZAxis(
-            np.arange(data.shape[0], dtype=np.float64) * scale["z"] + translate["z"],
+            np.arange(data.shape[0], dtype=np.float64) * scale["z"] + translation["z"],
             long_name=z_axis_name,
             units=z_axis_units,
         )
-
 
         y_axis_name = "y"
         if axis_names and "y" in axis_names:
@@ -487,7 +487,7 @@ class SpatialImageZYXDataClass(SpatialImageDataClass):
         if axis_units and "y" in axis_units:
             y_axis_units = axis_units["y"]
         self.y = YAxis(
-            np.arange(data.shape[1], dtype=np.float64) * scale["y"] + translate["y"],
+            np.arange(data.shape[1], dtype=np.float64) * scale["y"] + translation["y"],
             long_name=y_axis_name,
             units=y_axis_units,
         )
@@ -499,7 +499,7 @@ class SpatialImageZYXDataClass(SpatialImageDataClass):
         if axis_units and "x" in axis_units:
             x_axis_units = axis_units["x"]
         self.x = XAxis(
-            np.arange(data.shape[2], dtype=np.float64) * scale["x"] + translate["x"],
+            np.arange(data.shape[2], dtype=np.float64) * scale["x"] + translation["x"],
             long_name=x_axis_name,
             units=x_axis_units,
         )
@@ -516,13 +516,13 @@ class SpatialImageZYXCDataClass(SpatialImageZYXDataClass):
         self,
         data,
         scale: Optional[Union[Mapping[Hashable, float]]] = None,
-        translate: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
         name: str = default_name,
         axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
         axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
         c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
     ):
-        super().__init__(data, scale, translate, name, axis_names, axis_units)
+        super().__init__(data, scale, translation, name, axis_names, axis_units)
         if c_coords is None:
             c_coords = np.arange(data.shape[3])
 
@@ -548,7 +548,7 @@ class SpatialImageTZYXDataClass(SpatialImageDataClass):
         self,
         data,
         scale: Optional[Union[Mapping[Hashable, float]]] = None,
-        translate: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
         name: str = default_name,
         axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
         axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
@@ -560,8 +560,8 @@ class SpatialImageTZYXDataClass(SpatialImageDataClass):
         if scale is None:
             scale = {"z": 1.0, "y": 1.0, "x": 1.0}
 
-        if translate is None:
-            translate = {"z": 0.0, "y": 0.0, "x": 0.0}
+        if translation is None:
+            translation = {"z": 0.0, "y": 0.0, "x": 0.0}
 
         z_axis_name = "z"
         if axis_names and "z" in axis_names:
@@ -570,7 +570,7 @@ class SpatialImageTZYXDataClass(SpatialImageDataClass):
         if axis_units and "z" in axis_units:
             z_axis_units = axis_units["z"]
         self.z = ZAxis(
-            np.arange(data.shape[1], dtype=np.float64) * scale["z"] + translate["z"],
+            np.arange(data.shape[1], dtype=np.float64) * scale["z"] + translation["z"],
             long_name=z_axis_name,
             units=z_axis_units,
         )
@@ -582,7 +582,7 @@ class SpatialImageTZYXDataClass(SpatialImageDataClass):
         if axis_units and "y" in axis_units:
             y_axis_units = axis_units["y"]
         self.y = YAxis(
-            np.arange(data.shape[2], dtype=np.float64) * scale["y"] + translate["y"],
+            np.arange(data.shape[2], dtype=np.float64) * scale["y"] + translation["y"],
             long_name=y_axis_name,
             units=y_axis_units,
         )
@@ -594,7 +594,7 @@ class SpatialImageTZYXDataClass(SpatialImageDataClass):
         if axis_units and "x" in axis_units:
             x_axis_units = axis_units["x"]
         self.x = XAxis(
-            np.arange(data.shape[3], dtype=np.float64) * scale["x"] + translate["x"],
+            np.arange(data.shape[3], dtype=np.float64) * scale["x"] + translation["x"],
             long_name=x_axis_name,
             units=x_axis_units,
         )
@@ -620,14 +620,14 @@ class SpatialImageTZYXCDataClass(SpatialImageTZYXDataClass):
         self,
         data,
         scale: Optional[Union[Mapping[Hashable, float]]] = None,
-        translate: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
         name: str = default_name,
         axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
         axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
         t_coords: Optional[Sequence[Union[AllInteger, AllFloat, np.datetime64]]] = None,
         c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
     ):
-        super().__init__(data, scale, translate, name, axis_names, axis_units, t_coords)
+        super().__init__(data, scale, translation, name, axis_names, axis_units, t_coords)
         if c_coords is None:
             c_coords = np.arange(data.shape[4])
 
@@ -638,6 +638,353 @@ class SpatialImageTZYXCDataClass(SpatialImageTZYXDataClass):
         c_axis_units = ""
         if axis_units is not None and "c" in axis_units:
             c_axis_units = axis_units["c"]
+
+        self.c = CAxis(c_coords, c_axis_name, c_axis_units)
+
+
+@dataclass(init=False)
+class SpatialImageCXDataClass(SpatialImageDataClass):
+    """A 1D spatial image with channels, channel first."""
+
+    data: Data[Tuple[C, X], Any]
+    c: Coordof[CAxis]
+    x: Coordof[XAxis]
+
+    def __init__(
+        self,
+        data,
+        scale: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
+        name: str = default_name,
+        axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
+        axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
+        c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
+    ):
+        super().__init__(name)
+        self.data = data
+
+        if scale is None:
+            scale = {"x": 1.0}
+
+        if translation is None:
+            translation = {"x": 0.0}
+
+        x_axis_name = "x"
+        if axis_names and "x" in axis_names:
+            x_axis_name = axis_names["x"]
+        x_axis_units = ""
+        if axis_units and "x" in axis_units:
+            x_axis_units = axis_units["x"]
+        self.x = XAxis(
+            np.arange(data.shape[1], dtype=np.float64) * scale["x"] + translation["x"],
+            long_name=x_axis_name,
+            units=x_axis_units,
+        )
+
+        if c_coords is None:
+            c_coords = np.arange(data.shape[0])
+
+        c_axis_name = "c"
+        if axis_names is not None and "c" in axis_names:
+            c_axis_name = axis_names["c"]
+        c_axis_units = ""
+        if axis_units and "c" in axis_units:
+            c_axis_units["c"] = ""
+
+        self.c = CAxis(c_coords, c_axis_name, c_axis_units)
+
+@dataclass(init=False)
+class SpatialImageTCXDataClass(SpatialImageDataClass):
+    """A 1D spatial image with a time dimension and channels, channel first."""
+
+    data: Data[Tuple[T, C, X], Any]
+    t: Coordof[TAxis]
+    c: Coordof[CAxis]
+    x: Coordof[XAxis]
+
+    def __init__(
+        self,
+        data,
+        scale: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
+        name: str = default_name,
+        axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
+        axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
+        t_coords: Optional[Sequence[Union[AllInteger, AllFloat, np.datetime64]]] = None,
+        c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
+    ):
+        super().__init__(name)
+        self.data = data
+
+        if scale is None:
+            scale = {"x": 1.0}
+
+        if translation is None:
+            translation = {"x": 0.0}
+
+        t_axis_name = "t"
+        if axis_names and "t" in axis_names:
+            t_axis_name = axis_names["t"]
+        t_axis_units = ""
+        if axis_units and "t" in axis_units:
+            t_axis_units = axis_units["t"]
+        if t_coords is None:
+            t_coords = np.arange(data.shape[0])
+
+        self.t = TAxis(t_coords, t_axis_name, t_axis_units)
+        x_axis_name = "x"
+        if axis_names and "x" in axis_names:
+            x_axis_name = axis_names["x"]
+        x_axis_units = ""
+        if axis_units and "x" in axis_units:
+            x_axis_units = axis_units["x"]
+        self.x = XAxis(
+            np.arange(data.shape[2], dtype=np.float64) * scale["x"] + translation["x"],
+            long_name=x_axis_name,
+            units=x_axis_units,
+        )
+
+        if c_coords is None:
+            c_coords = np.arange(data.shape[1])
+
+        c_axis_name = "c"
+        if axis_names is not None and "c" in axis_names:
+            c_axis_name = axis_names["c"]
+        c_axis_units = ""
+        if axis_units and "c" in axis_units:
+            c_axis_units["c"] = ""
+
+        self.c = CAxis(c_coords, c_axis_name, c_axis_units)
+
+
+@dataclass(init=False)
+class SpatialImageCYXDataClass(SpatialImageDataClass):
+    """A 2D spatial image with a time dimension and channels, channel first."""
+
+    data: Data[Tuple[C, Y, X], Any]
+    c: Coordof[CAxis]
+    y: Coordof[YAxis]
+    x: Coordof[XAxis]
+
+    def __init__(
+        self,
+        data,
+        scale: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
+        name: str = default_name,
+        axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
+        axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
+        c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
+    ):
+        super().__init__(name)
+        self.data = data
+
+        if scale is None:
+            scale = {"y": 1.0, "x": 1.0}
+
+        if translation is None:
+            translation = {"y": 0.0, "x": 0.0}
+
+        x_axis_name = "x"
+        if axis_names and "x" in axis_names:
+            x_axis_name = axis_names["x"]
+        x_axis_units = ""
+        if axis_units and "x" in axis_units:
+            x_axis_units = axis_units["x"]
+        self.x = XAxis(
+            np.arange(data.shape[2], dtype=np.float64) * scale["x"] + translation["x"],
+            long_name=x_axis_name,
+            units=x_axis_units,
+        )
+
+        y_axis_name = "y"
+        if axis_names and "y" in axis_names:
+            y_axis_name = axis_names["y"]
+        y_axis_units = ""
+        if axis_units and "y" in axis_units:
+            y_axis_units = axis_units["y"]
+        self.y = YAxis(
+            np.arange(data.shape[1], dtype=np.float64) * scale["y"] + translation["y"],
+            long_name=y_axis_name,
+            units=y_axis_units,
+        )
+
+        if c_coords is None:
+            c_coords = np.arange(data.shape[0])
+
+        c_axis_name = "c"
+        if axis_names is not None and "c" in axis_names:
+            c_axis_name = axis_names["c"]
+        c_axis_units = ""
+        if axis_units and "c" in axis_units:
+            c_axis_units["c"] = ""
+
+        self.c = CAxis(c_coords, c_axis_name, c_axis_units)
+
+
+@dataclass(init=False)
+class SpatialImageTCYXDataClass(SpatialImageDataClass):
+    """A 2D spatial image with a time dimension and channels, channel first."""
+
+    data: Data[Tuple[T, C, Y, X], Any]
+    t: Coordof[TAxis]
+    c: Coordof[CAxis]
+    y: Coordof[YAxis]
+    x: Coordof[XAxis]
+
+    def __init__(
+        self,
+        data,
+        scale: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
+        name: str = default_name,
+        axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
+        axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
+        t_coords: Optional[Sequence[Union[AllInteger, AllFloat, np.datetime64]]] = None,
+        c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
+    ):
+        super().__init__(name)
+        self.data = data
+
+        t_axis_name = "t"
+        if axis_names and "t" in axis_names:
+            t_axis_name = axis_names["t"]
+        t_axis_units = ""
+        if axis_units and "t" in axis_units:
+            t_axis_units = axis_units["t"]
+        if t_coords is None:
+            t_coords = np.arange(data.shape[0])
+
+        self.t = TAxis(t_coords, t_axis_name, t_axis_units)
+        if scale is None:
+            scale = {"y": 1.0, "x": 1.0}
+
+        if translation is None:
+            translation = {"y": 0.0, "x": 0.0}
+
+        x_axis_name = "x"
+        if axis_names and "x" in axis_names:
+            x_axis_name = axis_names["x"]
+        x_axis_units = ""
+        if axis_units and "x" in axis_units:
+            x_axis_units = axis_units["x"]
+        self.x = XAxis(
+            np.arange(data.shape[3], dtype=np.float64) * scale["x"] + translation["x"],
+            long_name=x_axis_name,
+            units=x_axis_units,
+        )
+
+        y_axis_name = "y"
+        if axis_names and "y" in axis_names:
+            y_axis_name = axis_names["y"]
+        y_axis_units = ""
+        if axis_units and "y" in axis_units:
+            y_axis_units = axis_units["y"]
+        self.y = YAxis(
+            np.arange(data.shape[2], dtype=np.float64) * scale["y"] + translation["y"],
+            long_name=y_axis_name,
+            units=y_axis_units,
+        )
+
+        if c_coords is None:
+            c_coords = np.arange(data.shape[1])
+
+        c_axis_name = "c"
+        if axis_names is not None and "c" in axis_names:
+            c_axis_name = axis_names["c"]
+        c_axis_units = ""
+        if axis_units and "c" in axis_units:
+            c_axis_units["c"] = ""
+
+        self.c = CAxis(c_coords, c_axis_name, c_axis_units)
+
+
+@dataclass(init=False)
+class SpatialImageTCZYXDataClass(SpatialImageDataClass):
+    """A 2D spatial image with a time dimension and channels, channel first."""
+
+    data: Data[Tuple[T, C, Z, Y, X], Any]
+    t: Coordof[TAxis]
+    c: Coordof[CAxis]
+    z: Coordof[ZAxis]
+    y: Coordof[YAxis]
+    x: Coordof[XAxis]
+
+    def __init__(
+        self,
+        data,
+        scale: Optional[Union[Mapping[Hashable, float]]] = None,
+        translation: Optional[Union[Mapping[Hashable, float]]] = None,
+        name: str = default_name,
+        axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
+        axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
+        t_coords: Optional[Sequence[Union[AllInteger, AllFloat, np.datetime64]]] = None,
+        c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
+    ):
+        super().__init__(name)
+        self.data = data
+
+        t_axis_name = "t"
+        if axis_names and "t" in axis_names:
+            t_axis_name = axis_names["t"]
+        t_axis_units = ""
+        if axis_units and "t" in axis_units:
+            t_axis_units = axis_units["t"]
+        if t_coords is None:
+            t_coords = np.arange(data.shape[0])
+
+        self.t = TAxis(t_coords, t_axis_name, t_axis_units)
+        if scale is None:
+            scale = {"z": 1.0, "y": 1.0, "x": 1.0}
+
+        if translation is None:
+            translation = {"z": 0.0, "y": 0.0, "x": 0.0}
+
+        z_axis_name = "z"
+        if axis_names and "z" in axis_names:
+            z_axis_name = axis_names["z"]
+        z_axis_units = ""
+        if axis_units and "z" in axis_units:
+            z_axis_units = axis_units["z"]
+        self.z = ZAxis(
+            np.arange(data.shape[2], dtype=np.float64) * scale["z"] + translation["z"],
+            long_name=z_axis_name,
+            units=z_axis_units,
+        )
+
+        x_axis_name = "x"
+        if axis_names and "x" in axis_names:
+            x_axis_name = axis_names["x"]
+        x_axis_units = ""
+        if axis_units and "x" in axis_units:
+            x_axis_units = axis_units["x"]
+        self.x = XAxis(
+            np.arange(data.shape[4], dtype=np.float64) * scale["x"] + translation["x"],
+            long_name=x_axis_name,
+            units=x_axis_units,
+        )
+
+        y_axis_name = "y"
+        if axis_names and "y" in axis_names:
+            y_axis_name = axis_names["y"]
+        y_axis_units = ""
+        if axis_units and "y" in axis_units:
+            y_axis_units = axis_units["y"]
+        self.y = YAxis(
+            np.arange(data.shape[3], dtype=np.float64) * scale["y"] + translation["y"],
+            long_name=y_axis_name,
+            units=y_axis_units,
+        )
+
+        if c_coords is None:
+            c_coords = np.arange(data.shape[1])
+
+        c_axis_name = "c"
+        if axis_names is not None and "c" in axis_names:
+            c_axis_name = axis_names["c"]
+        c_axis_units = ""
+        if axis_units and "c" in axis_units:
+            c_axis_units["c"] = ""
 
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
@@ -695,6 +1042,11 @@ SpatialImageDataClasses = {
     ("z", "y", "x", "c"): SpatialImageZYXCDataClass,
     ("t", "z", "y", "x"): SpatialImageTZYXDataClass,
     ("t", "z", "y", "x", "c"): SpatialImageTZYXCDataClass,
+    ("c", "x"): SpatialImageCXDataClass,
+    ("t", "c", "x"): SpatialImageTCXDataClass,
+    ("c", "y", "x"): SpatialImageCYXDataClass,
+    ("t", "c", "y", "x"): SpatialImageTCYXDataClass,
+    ("t", "c", "z", "y", "x"): SpatialImageTCZYXDataClass,
 }
 
 
@@ -702,7 +1054,7 @@ def to_spatial_image(
     array_like: Any,
     dims: Optional[Sequence[Union["t", "z", "y", "x", "c"]]] = None,
     scale: Optional[Union[Mapping[Hashable, float]]] = None,
-    translate: Optional[Union[Mapping[Hashable, float]]] = None,
+    translation: Optional[Union[Mapping[Hashable, float]]] = None,
     name: str = default_name,
     axis_names: Optional[Union[Mapping[Hashable, str]]] = None,
     axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
@@ -726,7 +1078,7 @@ def to_spatial_image(
     scale: dict of floats, optional
         Pixel spacing for the spatial dims
 
-    translate: dict of floats, optional
+    translation: dict of floats, optional
         Origin or offset of the center of the first pixel.
 
     name: str, optional
@@ -772,7 +1124,7 @@ def to_spatial_image(
         raise ValueError("The dims provided are not supported yet")
 
     SIDataClass = SpatialImageDataClasses[dims]
-    si_kwargs = { 'scale': scale, 'translate': translate, 'name': name, 'axis_names': axis_names, 'axis_units': axis_units }
+    si_kwargs = { 'scale': scale, 'translation': translation, 'name': name, 'axis_names': axis_names, 'axis_units': axis_units }
     if 'c' in dims:
         si_kwargs['c_coords'] = c_coords
     if 't' in dims:
