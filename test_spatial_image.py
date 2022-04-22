@@ -128,7 +128,7 @@ def test_SpatialImageXDataClass():
     image = si.SpatialImageXDataClass.new(array)
     assert np.array_equal(image.data, array)
     assert np.array_equal(image.coords["x"].data, np.arange(3, dtype=np.float64))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
 
     image = si.SpatialImageXDataClass.new(
@@ -148,7 +148,7 @@ def test_SpatialImageXDataClass():
     image = si.SpatialImageDataClasses[("x",)].new(array)
     assert np.array_equal(image.data, array)
     assert np.array_equal(image.coords["x"].data, np.arange(3, dtype=np.float64))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
 
 
@@ -159,7 +159,7 @@ def test_SpatialImageXCDataClass():
     assert np.array_equal(image.data, array)
     assert np.array_equal(image.coords["x"].data, np.arange(3, dtype=np.float64))
     assert np.array_equal(image.coords["c"].data, np.arange(2))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.c.long_name == "c"
 
@@ -189,7 +189,7 @@ def test_SpatialImageTXDataClass():
     assert np.array_equal(image.data, array)
     assert np.array_equal(image.coords["t"].data, np.arange(3))
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.t.long_name == "t"
 
@@ -220,7 +220,7 @@ def test_SpatialImageTXCDataClass():
     assert np.array_equal(image.coords["t"].data, np.arange(3))
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
     assert np.array_equal(image.coords["c"].data, np.arange(4))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.t.long_name == "t"
     assert image.c.long_name == "c"
@@ -259,7 +259,7 @@ def test_SpatialImageYXDataClass():
     assert np.array_equal(image.data, array)
     assert np.array_equal(image.coords["y"].data, np.arange(3, dtype=np.float64))
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.y.long_name == "y"
     assert image.x.units == ""
@@ -296,7 +296,7 @@ def test_SpatialImageYXCDataClass():
     assert np.array_equal(image.coords["y"].data, np.arange(3, dtype=np.float64))
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
     assert np.array_equal(image.coords["c"].data, np.arange(1))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.y.long_name == "y"
     assert image.c.long_name == "c"
@@ -339,7 +339,7 @@ def test_SpatialImageTYXDataClass():
     assert np.array_equal(image.coords["y"].data, np.arange(3, dtype=np.float64))
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
     assert np.array_equal(image.coords["t"].data, np.arange(2))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.y.long_name == "y"
     assert image.t.long_name == "t"
@@ -383,7 +383,7 @@ def test_SpatialImageTYXCDataClass():
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
     assert np.array_equal(image.coords["t"].data, np.arange(2))
     assert np.array_equal(image.coords["c"].data, np.arange(1))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.y.long_name == "y"
     assert image.t.long_name == "t"
@@ -432,7 +432,7 @@ def test_SpatialImageZYXDataClass():
     assert np.array_equal(image.coords["z"].data, np.arange(2, dtype=np.float64))
     assert np.array_equal(image.coords["y"].data, np.arange(3, dtype=np.float64))
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.y.long_name == "y"
     assert image.z.long_name == "z"
@@ -477,7 +477,7 @@ def test_SpatialImageZYXCDataClass():
     assert np.array_equal(image.coords["y"].data, np.arange(3, dtype=np.float64))
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
     assert np.array_equal(image.coords["c"].data, np.arange(1))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.y.long_name == "y"
     assert image.z.long_name == "z"
@@ -528,7 +528,7 @@ def test_SpatialImageTZYXDataClass():
     assert np.array_equal(image.coords["y"].data, np.arange(3, dtype=np.float64))
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
     assert np.array_equal(image.coords["t"].data, np.arange(1))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.y.long_name == "y"
     assert image.z.long_name == "z"
@@ -580,7 +580,7 @@ def test_SpatialImageTZYXCDataClass():
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
     assert np.array_equal(image.coords["t"].data, np.arange(1))
     assert np.array_equal(image.coords["t"].data, np.arange(1))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.y.long_name == "y"
     assert image.z.long_name == "z"
@@ -635,7 +635,7 @@ def test_SpatialImageCXDataClass():
     assert np.array_equal(image.data, array)
     assert np.array_equal(image.coords["x"].data, np.arange(3, dtype=np.float64))
     assert np.array_equal(image.coords["c"].data, np.arange(2))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     # assert image.c.long_name == "c"
 
@@ -666,7 +666,7 @@ def test_SpatialImageTCXDataClass():
     assert np.array_equal(image.coords["t"].data, np.arange(3))
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
     assert np.array_equal(image.coords["c"].data, np.arange(4))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.t.long_name == "t"
     assert image.c.long_name == "c"
@@ -706,7 +706,7 @@ def test_SpatialImageCYXDataClass():
     assert np.array_equal(image.coords["y"].data, np.arange(3, dtype=np.float64))
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
     assert np.array_equal(image.coords["c"].data, np.arange(1))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.y.long_name == "y"
     assert image.c.long_name == "c"
@@ -750,7 +750,7 @@ def test_SpatialImageTCYXDataClass():
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
     assert np.array_equal(image.coords["t"].data, np.arange(2))
     assert np.array_equal(image.coords["c"].data, np.arange(1))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.y.long_name == "y"
     assert image.t.long_name == "t"
@@ -801,7 +801,7 @@ def test_SpatialImageTCZYXDataClass():
     assert np.array_equal(image.coords["x"].data, np.arange(2, dtype=np.float64))
     assert np.array_equal(image.coords["t"].data, np.arange(1))
     assert np.array_equal(image.coords["t"].data, np.arange(1))
-    assert image.name == "Image"
+    assert image.name == "image"
     assert image.x.long_name == "x"
     assert image.y.long_name == "y"
     assert image.z.long_name == "z"

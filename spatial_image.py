@@ -73,7 +73,7 @@ class CAxis:
     units: Attr[str] = ""
 
 
-default_name = "Image"
+default_name = "image"
 
 
 class SpatialImage(xr.DataArray):
