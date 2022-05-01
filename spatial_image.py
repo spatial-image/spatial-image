@@ -10,7 +10,7 @@ from dataclasses import dataclass
 import xarray as xr
 import numpy as np
 
-from xarray_dataclasses.dataarray import AsDataArray 
+from xarray_dataclasses.dataarray import AsDataArray
 from xarray_dataclasses.typing import Attr, Coordof, Data, Name
 from xarray_dataclasses.dataoptions import DataOptions
 
@@ -249,7 +249,9 @@ class SpatialImageTXCDataClass(SpatialImageTXDataClass):
         t_coords: Optional[Sequence[Union[AllInteger, AllFloat, np.datetime64]]] = None,
         c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
     ):
-        super().__init__(data, scale, translation, name, axis_names, axis_units, t_coords)
+        super().__init__(
+            data, scale, translation, name, axis_names, axis_units, t_coords
+        )
         if c_coords is None:
             c_coords = np.arange(data.shape[2])
 
@@ -268,7 +270,7 @@ class SpatialImageTXCDataClass(SpatialImageTXDataClass):
 class SpatialImageYXDataClass(SpatialImageDataClass):
     """A 2D spatial image."""
 
-    data: Data[Tuple[Y,X], Any]
+    data: Data[Tuple[Y, X], Any]
     y: Coordof[YAxis]
     x: Coordof[XAxis]
 
@@ -407,6 +409,7 @@ class SpatialImageTYXDataClass(SpatialImageDataClass):
             t_coords = np.arange(data.shape[0])
         self.t = TAxis(t_coords, t_axis_name, t_axis_units)
 
+
 @dataclass(init=False)
 class SpatialImageTYXCDataClass(SpatialImageTYXDataClass):
     """A 2D spatial image with a time dimension and channels."""
@@ -425,7 +428,9 @@ class SpatialImageTYXCDataClass(SpatialImageTYXDataClass):
         t_coords: Optional[Sequence[Union[AllInteger, AllFloat, np.datetime64]]] = None,
         c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
     ):
-        super().__init__(data, scale, translation, name, axis_names, axis_units, t_coords)
+        super().__init__(
+            data, scale, translation, name, axis_names, axis_units, t_coords
+        )
         if c_coords is None:
             c_coords = np.arange(data.shape[3])
 
@@ -444,7 +449,7 @@ class SpatialImageTYXCDataClass(SpatialImageTYXDataClass):
 class SpatialImageZYXDataClass(SpatialImageDataClass):
     """A 3D spatial image."""
 
-    data: Data[Tuple[Z,Y,X], Any]
+    data: Data[Tuple[Z, Y, X], Any]
     z: Coordof[ZAxis]
     y: Coordof[YAxis]
     x: Coordof[XAxis]
@@ -533,6 +538,7 @@ class SpatialImageZYXCDataClass(SpatialImageZYXDataClass):
             c_axis_units["c"] = ""
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
+
 @dataclass(init=False)
 class SpatialImageTZYXDataClass(SpatialImageDataClass):
     """A 3D spatial image with a time dimension."""
@@ -608,6 +614,7 @@ class SpatialImageTZYXDataClass(SpatialImageDataClass):
             t_coords = np.arange(data.shape[0])
         self.t = TAxis(t_coords, t_axis_name, t_axis_units)
 
+
 @dataclass(init=False)
 class SpatialImageTZYXCDataClass(SpatialImageTZYXDataClass):
     """A 3D spatial image with a time dimension and channels."""
@@ -626,7 +633,9 @@ class SpatialImageTZYXCDataClass(SpatialImageTZYXDataClass):
         t_coords: Optional[Sequence[Union[AllInteger, AllFloat, np.datetime64]]] = None,
         c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
     ):
-        super().__init__(data, scale, translation, name, axis_names, axis_units, t_coords)
+        super().__init__(
+            data, scale, translation, name, axis_names, axis_units, t_coords
+        )
         if c_coords is None:
             c_coords = np.arange(data.shape[4])
 
@@ -691,6 +700,7 @@ class SpatialImageCXDataClass(SpatialImageDataClass):
             c_axis_units["c"] = ""
 
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
+
 
 @dataclass(init=False)
 class SpatialImageTCXDataClass(SpatialImageDataClass):
@@ -987,6 +997,7 @@ class SpatialImageTCZYXDataClass(SpatialImageDataClass):
 
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
+
 def is_spatial_image(image: Any) -> bool:
     """Verify that the image 'quacks like a spatial-image'.
 
@@ -1088,7 +1099,7 @@ def to_spatial_image(
 
     axis_units: dict of str, optional
         Units names for the dim axes, e.g. {'x': 'millimeters', 't': 'seconds'}
-        
+
     c_coords: sequence integers or strings, optional
         If there is a 'c' dim, the coordiantes for this channel/component dimension.
         A sequence of integers by default but can be strings describing the
@@ -1123,11 +1134,17 @@ def to_spatial_image(
         raise ValueError("The dims provided are not supported yet")
 
     SIDataClass = SpatialImageDataClasses[dims]
-    si_kwargs = { 'scale': scale, 'translation': translation, 'name': name, 'axis_names': axis_names, 'axis_units': axis_units }
-    if 'c' in dims:
-        si_kwargs['c_coords'] = c_coords
-    if 't' in dims:
-        si_kwargs['t_coords'] = t_coords
+    si_kwargs = {
+        "scale": scale,
+        "translation": translation,
+        "name": name,
+        "axis_names": axis_names,
+        "axis_units": axis_units,
+    }
+    if "c" in dims:
+        si_kwargs["c_coords"] = c_coords
+    if "t" in dims:
+        si_kwargs["t_coords"] = t_coords
 
     image = SIDataClass.new(array_like, **si_kwargs)
 
