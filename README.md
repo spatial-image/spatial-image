@@ -1,6 +1,7 @@
 # spatial-image
 
 [![Test](https://github.com/spatial-image/spatial-image/actions/workflows/test.yml/badge.svg)](https://github.com/spatial-image/spatial-image/actions/workflows/test.yml)
+[![DOI](https://zenodo.org/badge/234798632.svg)](https://zenodo.org/badge/latestdoi/234798632)
 
 A multi-dimensional spatial image data structure for scientific Python.
 
