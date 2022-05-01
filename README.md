@@ -117,7 +117,7 @@ To run the test suite:
 ```
 git clone https://github.com/spatial-image/spatial-image
 cd spatial-image
-pip install -r requirements.txt -r requirements-dev.txt
+pip install -e ".[test]"
 pytest
 ```
 
