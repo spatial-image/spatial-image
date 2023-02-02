@@ -3,7 +3,7 @@
 A multi-dimensional spatial image data structure for Python."""
 
 __version__ = "0.2.1"
-
+import logging
 from typing import Union, Optional, Sequence, Hashable, Tuple, Mapping, Any, Literal
 from dataclasses import dataclass
 
@@ -1199,6 +1199,7 @@ def to_spatial_image(
             dims = ("z", "y", "x")[-ndim:]
         elif ndim < 5:
             dims = ("z", "y", "x", "c")
+            logging.info("Assuming channel dimension is last, if not, please specify dims.")
         elif ndim < 6:
             dims = ("t", "z", "y", "x", "c")
         else:
