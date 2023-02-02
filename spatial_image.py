@@ -511,7 +511,7 @@ class SpatialImageZYXDataClass(SpatialImageDataClass):
 
 @dataclass(init=False)
 class SpatialImageZYXCDataClass(SpatialImageZYXDataClass):
-    """A 3D spatial image with channels."""
+    """A 3D spatial image with channels last."""
 
     data: Data[Tuple[Z, Y, X, C], Any]
     c: Coordof[CAxis]
@@ -1133,7 +1133,7 @@ SpatialImageDataClasses = {
     ("t", "c", "x"): SpatialImageTCXDataClass,
     ("c", "y", "x"): SpatialImageCYXDataClass,
     ("t", "c", "y", "x"): SpatialImageTCYXDataClass,
-    ("c", "z", "y", "x"): SpatialImageTCZYXDataClass,
+    ("c", "z", "y", "x"): SpatialImageCZYXDataClass,
     ("t", "c", "z", "y", "x"): SpatialImageTCZYXDataClass,
 }
 
