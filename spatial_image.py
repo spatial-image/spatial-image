@@ -176,7 +176,7 @@ class SpatialImageXCDataClass(SpatialImageXDataClass):
             c_axis_name = axis_names["c"]
         c_axis_units = ""
         if axis_units and "c" in axis_units:
-            c_axis_units["c"] = ""
+            c_axis_units = axis_units["c"]
 
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
@@ -343,7 +343,7 @@ class SpatialImageYXCDataClass(SpatialImageYXDataClass):
             c_axis_name = axis_names["c"]
         c_axis_units = ""
         if axis_units and "c" in axis_units:
-            c_axis_units["c"] = ""
+            c_axis_units = axis_units["c"]
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
 
@@ -535,7 +535,7 @@ class SpatialImageZYXCDataClass(SpatialImageZYXDataClass):
             c_axis_name = axis_names["c"]
         c_axis_units = ""
         if axis_units and "c" in axis_units:
-            c_axis_units["c"] = ""
+            c_axis_units = axis_units["c"]
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
 
@@ -697,7 +697,7 @@ class SpatialImageCXDataClass(SpatialImageDataClass):
             c_axis_name = axis_names["c"]
         c_axis_units = ""
         if axis_units and "c" in axis_units:
-            c_axis_units["c"] = ""
+            c_axis_units = axis_units["c"]
 
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
@@ -761,7 +761,7 @@ class SpatialImageTCXDataClass(SpatialImageDataClass):
             c_axis_name = axis_names["c"]
         c_axis_units = ""
         if axis_units and "c" in axis_units:
-            c_axis_units["c"] = ""
+            c_axis_units = axis_units["c"]
 
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
@@ -826,7 +826,7 @@ class SpatialImageCYXDataClass(SpatialImageDataClass):
             c_axis_name = axis_names["c"]
         c_axis_units = ""
         if axis_units and "c" in axis_units:
-            c_axis_units["c"] = ""
+            c_axis_units = axis_units["c"]
 
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
@@ -903,7 +903,7 @@ class SpatialImageTCYXDataClass(SpatialImageDataClass):
             c_axis_name = axis_names["c"]
         c_axis_units = ""
         if axis_units and "c" in axis_units:
-            c_axis_units["c"] = ""
+            c_axis_units = axis_units["c"]
 
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
@@ -980,7 +980,7 @@ class SpatialImageCZYXDataClass(SpatialImageDataClass):
             c_axis_name = axis_names["c"]
         c_axis_units = ""
         if axis_units and "c" in axis_units:
-            c_axis_units["c"] = ""
+            c_axis_units = axis_units["c"]
 
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
@@ -1070,7 +1070,7 @@ class SpatialImageTCZYXDataClass(SpatialImageDataClass):
             c_axis_name = axis_names["c"]
         c_axis_units = ""
         if axis_units and "c" in axis_units:
-            c_axis_units["c"] = ""
+            c_axis_units = axis_units["c"]
 
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
