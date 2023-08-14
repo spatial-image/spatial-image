@@ -181,17 +181,17 @@ def test_SpatialImageXCDataClass():
         scale={"x": 2.0},
         translation={"x": 3.5},
         name="img",
-        axis_names={"x": "left-right", "c": "features"},
-        c_coords=["fa", "fb"],
+        axis_names={"x": "left-right", "c": "channel-wavelength"},
+        c_coords=["c1", "c2"],
     )
     assert np.array_equal(image.data, array)
     assert np.array_equal(
         image.coords["x"].data, np.arange(3, dtype=np.float64) * 2.0 + 3.5
     )
-    assert np.array_equal(image.coords["c"].data, ["fa", "fb"])
+    assert np.array_equal(image.coords["c"].data, ["c1", "c2"])
     assert image.name == "img"
     assert image.x.long_name == "left-right"
-    assert image.c.long_name == "features"
+    assert image.c.long_name == "channel-wavelength"
 
     assert si.SpatialImageDataClasses[("x", "c")] is si.SpatialImageXCDataClass
 
@@ -248,24 +248,24 @@ def test_SpatialImageTXCDataClass():
         scale={"x": 2.0},
         translation={"x": 3.5},
         name="img",
-        axis_names={"x": "left-right", "t": "time", "c": "feature"},
-        axis_units={"x": "millimeters", "t": "seconds", "c": "channel"},
+        axis_names={"x": "left-right", "t": "time", "c": "channel-wavelength"},
+        axis_units={"x": "millimeters", "t": "seconds", "c": "nanometers"},
         t_coords=["ta", "tb", "tc"],
-        c_coords=["fa", "fb", "fc", "fd"],
+        c_coords=["c1", "c2", "c3", "c4"],
     )
     assert np.array_equal(image.data, array)
     assert np.array_equal(
         image.coords["x"].data, np.arange(2, dtype=np.float64) * 2.0 + 3.5
     )
     assert np.array_equal(image.coords["t"].data, ["ta", "tb", "tc"])
-    assert np.array_equal(image.coords["c"].data, ["fa", "fb", "fc", "fd"])
+    assert np.array_equal(image.coords["c"].data, ["c1", "c2", "c3", "c4"])
     assert image.name == "img"
     assert image.x.long_name == "left-right"
     assert image.t.long_name == "time"
-    assert image.c.long_name == "feature"
+    assert image.c.long_name == "channel-wavelength"
     assert image.x.units == "millimeters"
     assert image.t.units == "seconds"
-    assert image.c.units == "channel"
+    assert image.c.units == "nanometers"
 
     assert si.SpatialImageDataClasses[("t", "x", "c")] is si.SpatialImageTXCDataClass
 
@@ -328,8 +328,12 @@ def test_SpatialImageYXCDataClass():
         scale={"y": 3.4, "x": 2.0},
         translation={"y": 1.2, "x": 3.5},
         name="img",
-        axis_names={"x": "left-right", "y": "anterior-posterior", "c": "feature"},
-        axis_units={"x": "millimeters", "y": "micrometers", "c": "channel"},
+        axis_names={
+            "x": "left-right",
+            "y": "anterior-posterior",
+            "c": "channel-wavelength",
+        },
+        axis_units={"x": "millimeters", "y": "micrometers", "c": "nanometers"},
         c_coords=[
             40,
         ],
@@ -350,10 +354,10 @@ def test_SpatialImageYXCDataClass():
     assert image.name == "img"
     assert image.x.long_name == "left-right"
     assert image.y.long_name == "anterior-posterior"
-    assert image.c.long_name == "feature"
+    assert image.c.long_name == "channel-wavelength"
     assert image.x.units == "millimeters"
     assert image.y.units == "micrometers"
-    assert image.c.units == "channel"
+    assert image.c.units == "nanometers"
 
     assert si.SpatialImageDataClasses[("y", "x", "c")] is si.SpatialImageYXCDataClass
 
@@ -437,13 +441,13 @@ def test_SpatialImageTYXCDataClass():
             "t": "time",
             "x": "left-right",
             "y": "anterior-posterior",
-            "c": "feature",
+            "c": "channel-wavelength",
         },
         axis_units={
             "t": "milliseconds",
             "x": "millimeters",
             "y": "micrometers",
-            "c": "channel",
+            "c": "nanometers",
         },
         t_coords=[
             20,
@@ -477,11 +481,11 @@ def test_SpatialImageTYXCDataClass():
     assert image.t.long_name == "time"
     assert image.x.long_name == "left-right"
     assert image.y.long_name == "anterior-posterior"
-    assert image.c.long_name == "feature"
+    assert image.c.long_name == "channel-wavelength"
     assert image.t.units == "milliseconds"
     assert image.x.units == "millimeters"
     assert image.y.units == "micrometers"
-    assert image.c.units == "channel"
+    assert image.c.units == "nanometers"
 
     assert (
         si.SpatialImageDataClasses[("t", "y", "x", "c")] is si.SpatialImageTYXCDataClass
@@ -565,13 +569,13 @@ def test_SpatialImageZYXCDataClass():
             "z": "inferior-superior",
             "x": "left-right",
             "y": "anterior-posterior",
-            "c": "feature",
+            "c": "channel-wavelength",
         },
         axis_units={
             "z": "millimeters",
             "x": "millimeters",
             "y": "micrometers",
-            "c": "channel",
+            "c": "nanometers",
         },
         c_coords=[
             3,
@@ -597,11 +601,11 @@ def test_SpatialImageZYXCDataClass():
     assert image.x.long_name == "left-right"
     assert image.y.long_name == "anterior-posterior"
     assert image.z.long_name == "inferior-superior"
-    assert image.c.long_name == "feature"
+    assert image.c.long_name == "channel-wavelength"
     assert image.x.units == "millimeters"
     assert image.y.units == "micrometers"
     assert image.z.units == "millimeters"
-    assert image.c.units == "channel"
+    assert image.c.units == "nanometers"
 
     assert (
         si.SpatialImageDataClasses[("z", "y", "x", "c")] is si.SpatialImageZYXCDataClass
@@ -703,14 +707,14 @@ def test_SpatialImageTZYXCDataClass():
             "z": "inferior-superior",
             "x": "left-right",
             "y": "anterior-posterior",
-            "c": "feature",
+            "c": "channel-wavelength",
         },
         axis_units={
             "t": "time",
             "z": "millimeters",
             "x": "millimeters",
             "y": "micrometers",
-            "c": "channel",
+            "c": "nanometers",
         },
         t_coords=[
             20,
@@ -745,11 +749,11 @@ def test_SpatialImageTZYXCDataClass():
     assert image.x.long_name == "left-right"
     assert image.y.long_name == "anterior-posterior"
     assert image.z.long_name == "inferior-superior"
-    assert image.c.long_name == "feature"
+    assert image.c.long_name == "channel-wavelength"
     assert image.x.units == "millimeters"
     assert image.y.units == "micrometers"
     assert image.z.units == "millimeters"
-    assert image.c.units == "channel"
+    assert image.c.units == "nanometers"
 
     assert (
         si.SpatialImageDataClasses[("t", "z", "y", "x", "c")]
@@ -773,20 +777,20 @@ def test_SpatialImageCXDataClass():
         scale={"x": 2.0},
         translation={"x": 3.5},
         name="img",
-        axis_names={"c": "feature", "x": "left-right"},
-        axis_units={"c": "channel", "x": "micrometers"},
-        c_coords=["fa", "fb"],
+        axis_names={"c": "channel-wavelength", "x": "left-right"},
+        axis_units={"c": "nanometers", "x": "micrometers"},
+        c_coords=["c1", "c2"],
     )
     assert np.array_equal(image.data, array)
     assert np.array_equal(
         image.coords["x"].data, np.arange(3, dtype=np.float64) * 2.0 + 3.5
     )
-    assert np.array_equal(image.coords["c"].data, ["fa", "fb"])
+    assert np.array_equal(image.coords["c"].data, ["c1", "c2"])
     assert image.name == "img"
     assert image.x.long_name == "left-right"
-    assert image.c.long_name == "feature"
+    assert image.c.long_name == "channel-wavelength"
     assert image.x.units == "micrometers"
-    assert image.c.units == "channel"
+    assert image.c.units == "nanometers"
 
     assert si.SpatialImageDataClasses[("c", "x")] is si.SpatialImageCXDataClass
 
@@ -812,17 +816,17 @@ def test_SpatialImageTCXDataClass():
         scale={"x": 2.0},
         translation={"x": 3.5},
         name="img",
-        axis_names={"t": "time", "c": "feature", "x": "left-right"},
-        axis_units={"t": "seconds", "c": "channel", "x": "millimeters"},
+        axis_names={"t": "time", "c": "channel-wavelength", "x": "left-right"},
+        axis_units={"t": "seconds", "c": "nanometers", "x": "millimeters"},
         t_coords=["ta", "tb", "tc"],
-        c_coords=["fa", "fb", "fc", "fd"],
+        c_coords=["c1", "c2", "c3", "c4"],
     )
     assert np.array_equal(image.data, array)
     assert np.array_equal(
         image.coords["x"].data, np.arange(2, dtype=np.float64) * 2.0 + 3.5
     )
     assert np.array_equal(image.coords["t"].data, ["ta", "tb", "tc"])
-    assert np.array_equal(image.coords["c"].data, ["fa", "fb", "fc", "fd"])
+    assert np.array_equal(image.coords["c"].data, ["c1", "c2", "c3", "c4"])
     assert image.name == "img"
     assert image.t.long_name == "time"
     assert image.x.long_name == "left-right"
@@ -855,8 +859,12 @@ def test_SpatialImageCYXDataClass():
         scale={"y": 3.4, "x": 2.0},
         translation={"y": 1.2, "x": 3.5},
         name="img",
-        axis_names={"c": "feature", "x": "left-right", "y": "anterior-posterior"},
-        axis_units={"c": "channel", "x": "millimeters", "y": "micrometers"},
+        axis_names={
+            "c": "channel-wavelength",
+            "x": "left-right",
+            "y": "anterior-posterior",
+        },
+        axis_units={"c": "nanometers", "x": "millimeters", "y": "micrometers"},
         c_coords=[
             40,
         ],
@@ -875,12 +883,12 @@ def test_SpatialImageCYXDataClass():
         ],
     )
     assert image.name == "img"
-    assert image.c.long_name == "feature"
+    assert image.c.long_name == "channel-wavelength"
     assert image.x.long_name == "left-right"
     assert image.y.long_name == "anterior-posterior"
     assert image.x.units == "millimeters"
     assert image.y.units == "micrometers"
-    assert image.c.units == "channel"
+    assert image.c.units == "nanometers"
 
     assert si.SpatialImageDataClasses[("c", "y", "x")] is si.SpatialImageCYXDataClass
 
@@ -911,13 +919,13 @@ def test_SpatialImageTCYXDataClass():
         name="img",
         axis_names={
             "t": "time",
-            "c": "feature",
+            "c": "channel-wavelength",
             "x": "left-right",
             "y": "anterior-posterior",
         },
         axis_units={
             "t": "seconds",
-            "c": "channel",
+            "c": "nanometers",
             "x": "millimeters",
             "y": "micrometers",
         },
@@ -951,11 +959,11 @@ def test_SpatialImageTCYXDataClass():
     )
     assert image.name == "img"
     assert image.t.long_name == "time"
-    assert image.c.long_name == "feature"
+    assert image.c.long_name == "channel-wavelength"
     assert image.x.long_name == "left-right"
     assert image.y.long_name == "anterior-posterior"
     assert image.t.units == "seconds"
-    assert image.c.units == "channel"
+    assert image.c.units == "nanometers"
     assert image.x.units == "millimeters"
     assert image.y.units == "micrometers"
 
@@ -989,13 +997,13 @@ def test_SpatialImageCZYXDataClass():
         translation={"z": 0.9, "y": 1.2, "x": 3.5},
         name="img",
         axis_names={
-            "c": "feature",
+            "c": "channel-wavelength",
             "z": "inferior-superior",
             "x": "left-right",
             "y": "anterior-posterior",
         },
         axis_units={
-            "c": "channel",
+            "c": "nanometers",
             "z": "millimeters",
             "x": "millimeters",
             "y": "micrometers",
@@ -1021,11 +1029,11 @@ def test_SpatialImageCZYXDataClass():
         ],
     )
     assert image.name == "img"
-    assert image.c.long_name == "feature"
+    assert image.c.long_name == "channel-wavelength"
     assert image.x.long_name == "left-right"
     assert image.y.long_name == "anterior-posterior"
     assert image.z.long_name == "inferior-superior"
-    assert image.c.units == "channel"
+    assert image.c.units == "nanometers"
     assert image.x.units == "millimeters"
     assert image.y.units == "micrometers"
     assert image.z.units == "millimeters"
@@ -1064,14 +1072,14 @@ def test_SpatialImageTCZYXDataClass():
         name="img",
         axis_names={
             "t": "time",
-            "c": "feature",
+            "c": "channel-wavelength",
             "z": "inferior-superior",
             "x": "left-right",
             "y": "anterior-posterior",
         },
         axis_units={
             "t": "seconds",
-            "c": "channel",
+            "c": "nanometers",
             "z": "millimeters",
             "x": "millimeters",
             "y": "micrometers",
@@ -1107,12 +1115,12 @@ def test_SpatialImageTCZYXDataClass():
     )
     assert image.name == "img"
     assert image.t.long_name == "time"
-    assert image.c.long_name == "feature"
+    assert image.c.long_name == "channel-wavelength"
     assert image.x.long_name == "left-right"
     assert image.y.long_name == "anterior-posterior"
     assert image.z.long_name == "inferior-superior"
     assert image.t.units == "seconds"
-    assert image.c.units == "channel"
+    assert image.c.units == "nanometers"
     assert image.x.units == "millimeters"
     assert image.y.units == "micrometers"
     assert image.z.units == "millimeters"
