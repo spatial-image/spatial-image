@@ -1178,13 +1178,13 @@ def to_spatial_image(
     axis_units: dict of str, optional
         Units names for the dim axes, e.g. {'x': 'millimeters', 't': 'seconds'}
 
+    t_coords: sequence of integers, strings or datetime64, optional
+        The 't' time coords can have int, float, or datetime64 type.
+
     c_coords: sequence integers or strings, optional
         If there is a 'c' dim, the coordinates for this channel/component dimension.
         A sequence of integers by default but can be strings describing the
         channels, e.g. ['r', 'g', 'b'].
-
-    t_coords: sequence of integers, strings or datetime64, optional
-        The 't' time coords can have int, float, or datetime64 type.
 
     Returns
     -------
