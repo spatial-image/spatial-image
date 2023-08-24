@@ -83,12 +83,12 @@ class SpatialImage(xr.DataArray):
         Multi-dimensional array that provides the image pixel values.
 
     dims:
-        Values should drawn from: {'c', 'x', 'y', 'z', 't'} for channel or
+        Values should be drawn from: {'c', 'x', 'y', 'z', 't'} for channel or
         component, first spatial direction, second spatial direction, third
         spatial dimension, and time, respectively.
 
     coords: sequence or dict of array_like objects, optional
-        For each {'x', 'y', 'z'} dim, 1-D np.float64 array specifing the
+        For each {'x', 'y', 'z'} dim, 1-D np.float64 array specifying the
         pixel location in the image's local coordinate system. The distance
         between subsequent coords elements must be uniform. The 'c' coords
         are a sequence of integers by default but can be strings describing the
@@ -1159,8 +1159,8 @@ def to_spatial_image(
 
     dims: sequence of hashable, optional
         Tuple specifying the data dimensions.
-        Values should drawn from: {'t', 'z', 'y', 'x', 'c'} for time, third spatial direction
-        second spatial direction, first spatial dimension, and channel or
+        Values should be drawn from: {'t', 'z', 'y', 'x', 'c'} for time, third spatial
+        direction second spatial direction, first spatial dimension, and channel or
         component, respectively spatial dimension, and time, respectively.
 
     scale: dict of floats, optional
@@ -1179,7 +1179,7 @@ def to_spatial_image(
         Units names for the dim axes, e.g. {'x': 'millimeters', 't': 'seconds'}
 
     c_coords: sequence integers or strings, optional
-        If there is a 'c' dim, the coordiantes for this channel/component dimension.
+        If there is a 'c' dim, the coordinates for this channel/component dimension.
         A sequence of integers by default but can be strings describing the
         channels, e.g. ['r', 'g', 'b'].
 
