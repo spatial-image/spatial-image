@@ -1148,6 +1148,7 @@ def to_spatial_image(
     axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
     t_coords: Optional[Sequence[Union[AllInteger, AllFloat, np.datetime64]]] = None,
     c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
+    rgb: Optional[bool] = None,
 ) -> SpatialImage:
     """Convert the array-like to a spatial-image.
 
@@ -1186,6 +1187,11 @@ def to_spatial_image(
         A sequence of integers by default but can be strings describing the
         channels, e.g. ['r', 'g', 'b'].
 
+    rgb: boolean, optional
+        Whether to interpret image channels as RGB. If True, override 'c_coords' and
+        assign ['r', 'g', 'b'] (or 'a') as channel names. If None, auto-detect based on
+        whether 'c_coords' is not explicitly provided and length of 'c' is 3 or 4.
+
     Returns
     -------
 
@@ -1221,6 +1227,13 @@ def to_spatial_image(
         "axis_units": axis_units,
     }
     if "c" in dims:
+        c_len = array_like.shape[dims.index("c")]
+        if rgb and c_len not in {3, 4}:
+            raise ValueError(
+                "rgb is True, but c dimension does not have 3 or 4 channels"
+            )
+        if rgb or (rgb is None and c_coords is None and c_len in {3, 4}):
+            c_coords = ["r", "g", "b", "a"][:c_len]
         si_kwargs["c_coords"] = c_coords
     if "t" in dims:
         si_kwargs["t_coords"] = t_coords
