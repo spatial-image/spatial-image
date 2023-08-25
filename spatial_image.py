@@ -1148,7 +1148,7 @@ def to_spatial_image(
     axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
     t_coords: Optional[Sequence[Union[AllInteger, AllFloat, np.datetime64]]] = None,
     c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
-    rgb: Optional[bool] = None,
+    rgb: Optional[bool] = False,
 ) -> SpatialImage:
     """Convert the array-like to a spatial-image.
 
