@@ -12,7 +12,6 @@ import numpy as np
 
 from xarray_dataclasses.dataarray import AsDataArray
 from xarray_dataclasses.typing import Attr, Coordof, Data, Name
-from xarray_dataclasses.dataoptions import DataOptions
 
 
 _supported_dims = {"c", "x", "y", "z", "t"}
@@ -103,8 +102,6 @@ class SpatialImage(xr.DataArray):
 @dataclass(init=False)
 class SpatialImageDataClass(AsDataArray):
     """An xarray.DataArray dataclass for a spatial image."""
-
-    __dataoptions__ = DataOptions(SpatialImage)
 
     name: Name[str]
 
@@ -907,6 +904,7 @@ class SpatialImageTCYXDataClass(SpatialImageDataClass):
 
         self.c = CAxis(c_coords, c_axis_name, c_axis_units)
 
+
 @dataclass(init=False)
 class SpatialImageCZYXDataClass(SpatialImageDataClass):
     """A 3D spatial image with channels first."""
@@ -935,7 +933,7 @@ class SpatialImageCZYXDataClass(SpatialImageDataClass):
 
         if translation is None:
             translation = {"z": 0.0, "y": 0.0, "x": 0.0}
-        
+
         z_axis_name = "z"
         if axis_names and "z" in axis_names:
             z_axis_name = axis_names["z"]
@@ -1199,7 +1197,9 @@ def to_spatial_image(
             dims = ("z", "y", "x")[-ndim:]
         elif ndim < 5:
             dims = ("z", "y", "x", "c")
-            logging.info("Assuming channel dimension is last, if not, please specify dims.")
+            logging.info(
+                "Assuming channel dimension is last, if not, please specify dims."
+            )
         elif ndim < 6:
             dims = ("t", "z", "y", "x", "c")
         else:
