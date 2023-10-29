@@ -131,6 +131,33 @@ def test_c_coords():
     assert np.array_equal(image.coords["c"], [0, 2])
 
 
+@pytest.mark.parametrize(
+    ("rgb", "c_len", "c_coords", "expected_c_coords"),
+    [
+        # Auto-detect
+        (None, 2, None, [0, 1]),  # default c_coords
+        (None, 3, [0, 1, 2], [0, 1, 2]),  # preserve c_coords
+        (None, 3, None, ["r", "g", "b"]),
+        (None, 4, None, ["r", "g", "b", "a"]),
+        # Disable
+        (False, 3, None, [0, 1, 2]),  # default c_coords
+        (False, 4, None, [0, 1, 2, 3]),
+        # Enforce RGB
+        (True, 3, [0, 1, 2], ["r", "g", "b"]),
+        (True, 4, [0, 1, 2, 3], ["r", "g", "b", "a"]),
+        pytest.param(True, 2, None, None, marks=pytest.mark.xfail(strict=True, raises=ValueError)),
+    ],
+)
+def test_rgb(rgb, c_len, c_coords, expected_c_coords):
+    array = np.random.random((3, 4, c_len))
+    dims = ("y", "x", "c")
+    image = si.to_spatial_image(
+        array, dims=dims, scale={"x": 4.0, "y": 3.0}, c_coords=c_coords, rgb=rgb,
+    )
+    assert si.is_spatial_image(image)
+    assert np.array_equal(image.coords["c"], expected_c_coords)
+
+
 def test_SpatialImage_type():
     si.SpatialImage is xr.DataArray
 
