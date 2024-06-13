@@ -82,12 +82,12 @@ class SpatialImage(xr.DataArray):
         Multi-dimensional array that provides the image pixel values.
 
     dims:
-        Values should drawn from: {'c', 'x', 'y', 'z', 't'} for channel or
+        Values should be drawn from: {'c', 'x', 'y', 'z', 't'} for channel or
         component, first spatial direction, second spatial direction, third
         spatial dimension, and time, respectively.
 
     coords: sequence or dict of array_like objects, optional
-        For each {'x', 'y', 'z'} dim, 1-D np.float64 array specifing the
+        For each {'x', 'y', 'z'} dim, 1-D np.float64 array specifying the
         pixel location in the image's local coordinate system. The distance
         between subsequent coords elements must be uniform. The 'c' coords
         are a sequence of integers by default but can be strings describing the
@@ -1146,6 +1146,7 @@ def to_spatial_image(
     axis_units: Optional[Union[Mapping[Hashable, str]]] = None,
     t_coords: Optional[Sequence[Union[AllInteger, AllFloat, np.datetime64]]] = None,
     c_coords: Optional[Sequence[Union[AllInteger, str]]] = None,
+    rgb: Optional[bool] = False,
 ) -> SpatialImage:
     """Convert the array-like to a spatial-image.
 
@@ -1157,8 +1158,8 @@ def to_spatial_image(
 
     dims: sequence of hashable, optional
         Tuple specifying the data dimensions.
-        Values should drawn from: {'t', 'z', 'y', 'x', 'c'} for time, third spatial direction
-        second spatial direction, first spatial dimension, and channel or
+        Values should be drawn from: {'t', 'z', 'y', 'x', 'c'} for time, third spatial
+        direction second spatial direction, first spatial dimension, and channel or
         component, respectively spatial dimension, and time, respectively.
 
     scale: dict of floats, optional
@@ -1176,13 +1177,18 @@ def to_spatial_image(
     axis_units: dict of str, optional
         Units names for the dim axes, e.g. {'x': 'millimeters', 't': 'seconds'}
 
+    t_coords: sequence of integers, strings or datetime64, optional
+        The 't' time coords can have int, float, or datetime64 type.
+
     c_coords: sequence integers or strings, optional
-        If there is a 'c' dim, the coordiantes for this channel/component dimension.
+        If there is a 'c' dim, the coordinates for this channel/component dimension.
         A sequence of integers by default but can be strings describing the
         channels, e.g. ['r', 'g', 'b'].
 
-    t_coords: sequence of integers, strings or datetime64, optional
-        The 't' time coords can have int, float, or datetime64 type.
+    rgb: boolean, optional
+        Whether to interpret image channels as RGB. If True, override 'c_coords' and
+        assign ['r', 'g', 'b'] (or 'a') as channel names. If None, auto-detect based on
+        whether 'c_coords' is not explicitly provided and length of 'c' is 3 or 4.
 
     Returns
     -------
@@ -1221,6 +1227,13 @@ def to_spatial_image(
         "axis_units": axis_units,
     }
     if "c" in dims:
+        c_len = array_like.shape[dims.index("c")]
+        if rgb and c_len not in {3, 4}:
+            raise ValueError(
+                "rgb is True, but c dimension does not have 3 or 4 channels"
+            )
+        if rgb or (rgb is None and c_coords is None and c_len in {3, 4}):
+            c_coords = ["r", "g", "b", "a"][:c_len]
         si_kwargs["c_coords"] = c_coords
     if "t" in dims:
         si_kwargs["t_coords"] = t_coords
