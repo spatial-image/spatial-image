@@ -5,7 +5,7 @@ build-backend = "flit_core.buildapi"
 [tool.flit.metadata]
 module = "spatial_image"
 author = "Matt McCormick"
-author-email = "matt.mccormick@kitware.com"
+author-email = "matt@mmmccormick.com"
 home-page = "https://github.com/spatial-image/spatial-image"
 classifiers = ["License :: OSI Approved :: MIT License"]
 requires-python = ">=3.8" 
