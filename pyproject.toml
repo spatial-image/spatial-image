@@ -51,7 +51,8 @@ test = { cmd = "pytest", description = "Run the test suite" }
 
 [tool.pixi.feature.test.dependencies]
 python = "3.10.*"
-xarray = ">=2025.1.2,<2026"
+pytest = ">=8.3.4,<9"
+pytz = ">=2025.1,<2026"
 
 [tool.pixi.feature.package.tasks]
 package = { cmd = "hatch build", description = "Build the package." }
