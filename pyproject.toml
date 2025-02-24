@@ -1,27 +1,57 @@
 [build-system]
-requires = ["flit_core >=2,<4"]
+requires = ["flit_core >3,<4"]
 build-backend = "flit_core.buildapi"
 
-[tool.flit.metadata]
-module = "spatial_image"
-author = "Matt McCormick"
-author-email = "matt@mmmccormick.com"
-home-page = "https://github.com/spatial-image/spatial-image"
-classifiers = ["License :: OSI Approved :: MIT License"]
-requires-python = ">=3.8" 
-description-file = "README.md"
+[project]
+name = "spatial_image"
+authors = [{name = "Matt McCormick", email = "matt@mmmccormick.com"}]
+license.file = "LICENSE.txt"
+readme = "README.md"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    'Intended Audience :: Developers',
+    'Intended Audience :: Science/Research',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13',
+    ]
+requires-python = ">=3.10,<3.14"
+description = "A multi-dimensional spatial image data structure for scientific Python."
+dynamic = ["version"]
 
-requires = [
+dependencies = [
     "numpy",
-    "xarray",
-    "xarray-dataclasses>=1.1.0",
-]
-
-[tool.flit.metadata.requires-extra]
-test = [
-    "pytest",
-    "pytest-mypy",
+    "xarray>=2024.10.0",
 ]
 
 [tool.black]
 line-length = 88
+
+[tool.pixi.project]
+channels = ["conda-forge"]
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
+
+[tool.pixi.pypi-dependencies]
+spatial-image = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+
+[tool.pixi.environments]
+default = { solve-group = "default" }
+test = { features = ["test"], solve-group = "default" }
+package = { features = ["package"], solve-group = "default" }
+
+[tool.pixi.feature.test.tasks]
+test = { cmd = "pytest", description = "Run the test suite" }
+
+[tool.pixi.feature.test.dependencies]
+python = "3.10.*"
+
+[tool.pixi.feature.package.tasks]
+package = { cmd = "flit build", description = "Build the package." }
+
+[tool.pixi.feature.package.dependencies]
+python = "3.10.*"
+flit = ">=3.11.0,<4"
