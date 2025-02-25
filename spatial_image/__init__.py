@@ -11,9 +11,7 @@ from dataclasses import dataclass
 import xarray as xr
 import numpy as np
 
-from xarray_dataclasses.dataarray import AsDataArray
-from xarray_dataclasses.typing import Attr, Coordof, Data, Name
-
+from xarray_dataclasses import AsDataArray, Attr, Coordof, Data, Name
 
 _supported_dims = {"c", "x", "y", "z", "t"}
 _spatial_dims = {"x", "y", "z"}

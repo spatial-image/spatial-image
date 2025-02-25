@@ -2381,13 +2381,13 @@ packages:
   timestamp: 1733244175724
 - pypi: .
   name: spatial-image
-  version: 1.1.0
-  sha256: 8c3d8b106f1b3c87f383708601bfb2e51f0ef5a7eac380e2e29fc006e2668b97
+  version: 1.2.0
+  sha256: 5b6f1c76c7c1470a6a492719d3e15342a08d62eff358457cb0361e57f623a0b0
   requires_dist:
   - numpy
   - xarray-dataclasses
   - xarray>=2024.10.0
-  requires_python: '>=3.10,<3.14'
+  requires_python: '>=3.10'
   editable: true
 - conda: https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h4845f30_101.conda
   sha256: e0569c9caa68bf476bead1bed3d79650bb080b532c64a4af7d8ca286c08dea4e
